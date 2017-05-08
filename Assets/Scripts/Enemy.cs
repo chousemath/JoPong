@@ -13,12 +13,15 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ballObj = GameObject.FindGameObjectWithTag ("Ball");
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		targetPos = Vector3.Lerp (gameObject.transform.position, ballObj.transform.position, Time.deltaTime * speed);
-		gameObject.transform.position = new Vector3 (xLimit, Mathf.Clamp(targetPos.y, lowerY, upperY), 0);
+		ballObj = GameObject.FindGameObjectWithTag ("Ball");
+		if (ballObj != null) {
+			targetPos = Vector3.Lerp (gameObject.transform.position, ballObj.transform.position, Time.deltaTime * speed);
+			gameObject.transform.position = new Vector3 (xLimit, Mathf.Clamp(targetPos.y, lowerY, upperY), 0);
+		}
 	}
 }
